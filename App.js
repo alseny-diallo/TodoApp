@@ -11,6 +11,12 @@ const App = () => {
     {title: 'learning react-native', key: '4'},
     {title: 'learning vuejs', key: '5'},
   ]);
+  const pressHandler = key => {
+    setTodos(prevTodos => {
+      return prevTodos.filter(todo => todo.key != key);
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Header />
@@ -18,7 +24,9 @@ const App = () => {
         <View style={styles.list}>
           <FlatList
             data={todos}
-            renderItem={({item}) => <TodoItem item={item} />}
+            renderItem={({item}) => (
+              <TodoItem item={item} pressHandler={pressHandler} />
+            )}
           />
         </View>
       </View>
